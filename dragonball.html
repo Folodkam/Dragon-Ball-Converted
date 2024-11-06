@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Episodes</title>
+    <style>
+        :root {
+            --background: linear-gradient(135deg, #1a1a1a 50%, #e6e6e6 50%);
+            --text-color: #333;
+            --card-bg: #fff;
+            --card-hover: #ff9900;
+        }
+
+        [data-theme="dark"] {
+            --background: linear-gradient(135deg, #000000 50%, #1a1a1a 50%);
+            --text-color: #fff;
+            --card-bg: #333;
+            --card-hover: #ff6600;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background: var(--background);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .episode-list {
+            width: 300px;
+            background-color: #000000;
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        /* Scrollbar styling */
+        .episode-list::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .episode-list::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        .episode-list::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 5px;
+        }
+
+        .episode-list::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+
+        .episode-list {
+            scrollbar-width: thin;
+            scrollbar-color: #333333 #000000;
+        }
+
+        .episode-list h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .episode-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #333333;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .episode-list li:hover {
+            background-color: #555555;
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .episode-player {
+            width: 800px;
+            height: 450px;
+            background-color: #000000;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333333;
+        }
+
+        .episode-player.empty {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 120px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+    <a href="index.html" class="back-button">← Back</a>
+    <div class="container">
+        <div class="episode-list">
+            <h2>Dragon Ball Episodes</h2>
+            <ul>
+                <li onclick="playEpisode('https://filemoon.sx/e/65pemgrpwwnd')">Episode 1</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/6ipz2jwxoit6')">Episode 2</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/d2zfr8a27463')">Episode 3</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/9ti8d3k2huop')">Episode 4</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/50ta44um61x8')">Episode 5</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/vlvs1avpq2kn')">Episode 6</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/77dspcvo8up3')">Episode 7</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/bngrh0fbbnq4')">Episode 8</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/e46iavpoh3ms')">Episode 9</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/qykunp4x566j')">Episode 10</li>
+                <li onclick="playEpisode('https://filemoon.sx/e/g8a6ytmnc8uo')">Episode 11</li>
+                <script>
+                    for (let i = 12; i <= 82; i++) {
+                        document.write(`<li onclick="playEpisode('')">Episode ${i}</li>`);
+                    }
+                </script>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <div class="episode-player empty" id="player">
+                <span>Select an episode to play</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.documentElement;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        function playEpisode(url) {
+            const player = document.getElementById('player');
+            if (url) {
+                player.innerHTML = `
+                    <iframe 
+                        src="${url}/Dragon_Ball_Recut_E01_v2_Bulma_and_Son_Goku_72FPS"
+                        width="800"
+                        height="450"
+                        frameborder="0"
+                        marginwidth="0"
+                        marginheight="0"
+                        scrolling="no"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            } else {
+                player.innerHTML = '<h2 style="color: white;">Video URL not available</h2>';
+            }
+        }
+    </script>
+</body>
+</html>  
