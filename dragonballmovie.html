@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Movie</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: rgba(32, 32, 32, 0.9);
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .episode-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .episode-item {
+            background-color: rgba(51, 51, 51, 0.8);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .episode-item:hover {
+            background-color: rgba(75, 75, 75, 0.8);
+        }
+
+        .video-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .video-player {
+            width: 80%;
+            height: 80%;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .message {
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Light theme styles */
+        body.light-theme {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            color: black;
+        }
+
+        body.light-theme .sidebar {
+            background-color: rgba(240, 240, 240, 0.9);
+            color: black;
+        }
+
+        body.light-theme .episode-item {
+            background-color: rgba(200, 200, 200, 0.8);
+            color: black;
+        }
+
+        body.light-theme .episode-item:hover {
+            background-color: rgba(180, 180, 180, 0.8);
+        }
+
+        body.light-theme .button {
+            background-color: #ddd;
+            color: black;
+        }
+
+        body.light-theme .video-player {
+            border: 1px solid #ddd;
+        }
+
+        /* Theme toggle button icon */
+        .theme-icon::after {
+            content: "🌙";
+        }
+
+        body.light-theme .theme-icon::after {
+            content: "☀️";
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1 class="title">Dragon Ball Movie</h1>
+        <ul class="episode-list">
+            <li class="episode-item" onclick="playMovie(1)">Movie 1</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="controls">
+                <button class="button" onclick="toggleTheme()"><span class="theme-icon"></span> Theme</button>
+                <button class="button" onclick="location.href='series.html'">← Back</button>
+            </div>
+        </div>
+        <div class="video-container">
+            <div class="video-player" id="video-player">
+                <div class="message">Select an episode to play</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            // Save theme preference
+            const isLight = document.body.classList.contains('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+
+        function playMovie(movieNumber) {
+            const videoPlayer = document.getElementById('video-player');
+            videoPlayer.innerHTML = `<iframe src="https://filemoon.sx/e/bg8k81gs5ps8/Dragon_Ball_Curse_of_the_Blood_Rubies_1986_BluRay_1080p_DTS_AC3_x264-MgB_72FPS" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="100%" allowfullscreen></iframe>`;
+        }
+
+        // Load saved theme preference on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+        });
+    </script>
+</body>
+</html>  

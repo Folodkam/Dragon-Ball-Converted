@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('kid-goku-flying-nimbus.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="series-row">
+
+        <div class="series-item">
+            <a href="dragonball.html">
+                <img src="images/dragonball-vol1.jpg" alt="Dragon Ball Volume 1 Cover - Goku riding Shenron on red background" 
+                     style="max-width: 200px; height: 300px;">
+                <p style="color: black;">Dragon Ball</p>
+            </a>
+        </div>
+
+        <div class="series-item">
+            <a href="dragonballmovie.html">
+                <img src="images/dragonballcursed.jpg" alt="Dragon Ball: Curse of the Blood Rubies Movie Cover" 
+                     style="max-width: 200px; height: 300px; object-fit: cover;">
+                <p style="color: black;">Dragon Ball: Curse of the Blood Rubies</p>
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .series-row {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .series-item {
+            text-align: center;
+        }
+
+        .series-item img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .series-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .series-item p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</body>
+</html>
